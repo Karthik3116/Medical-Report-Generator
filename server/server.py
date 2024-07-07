@@ -33,47 +33,61 @@ CORS(app)
 
 # Deep Learning
 
-loaded_model = tf.keras.models.load_model("/home/professor/Documents/GitHub/temp2/medical_image_captioning/server/accumodelpp84.h5")
+loaded_model = tf.keras.models.load_model("/home/professor/accumodelpp84.h5")
+
+def preprocess_image(image_path):
+    original_img = tf.keras.preprocessing.image.load_img(image_path)
+    img = tf.keras.preprocessing.image.load_img(image_path, target_size=(224, 224))
+    img_array = tf.keras.preprocessing.image.img_to_array(img)
+    img_array = tf.expand_dims(img_array, 0)
+    return original_img, img_array
+
+# Define predict_image function
+def predict_image(image_path, model):
+    original_img, img_array = preprocess_image(image_path)
+    predicted_probs = model.predict(img_array)
+    predicted_label = "Pneumothorax" if predicted_probs[0][0] > 0.5 else "No Pneumothorax"
+    return predicted_label, predicted_probs
+
 
 # Define a route to handle image uploads and predictions
 @app.route("/predictdl", methods=["POST","GET"])
 def predict():
-    print("got request for dl")
+    # Check if a file was uploaded
     if 'file' not in request.files:
-        return jsonify({"error": "No file part"})
-
-    file = request.files['file']
-    if file.filename == '':
-        return jsonify({"error": "No selected file"})
+        return jsonify({'error': 'No file part'})
     
-    if file and file.filename:
-        # Preprocess the image
-        img = Image.open(file).convert('L')
-        img = img.resize((224, 224))  # Resize to match model input size
-        img = img.convert('RGB')
-        img_array = np.array(img) / 255.0  # Normalize pixel values
-
-        img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
-
+    file = request.files['file']
+    
+    # If no file is selected
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'})
+    
+    # If file exists and is allowed extension
+    if file:
+        # Save the file to a temporary location
+        temp_path = "/tmp/uploaded_image.png"
+        file.save(temp_path)
+        
         # Make prediction
-        predicted_probs = loaded_model.predict(img_array)
-        predicted_label = "Pneumothorax" if predicted_probs[0][0] > 0.5 else "No Pneumothorax"
-
-        # Return prediction results
-        return jsonify({"prediction": predicted_label, "probabilities": predicted_probs.tolist()})
-    else:
-        return jsonify({"error": "Invalid file format"})
+        prediction, probabilities = predict_image(temp_path, loaded_model)
+        
+        # Return prediction result
+        return jsonify({
+            'prediction': prediction,
+            'probabilities': probabilities.tolist()
+        })
 
 #LLM
 
-model = load_model('/home/professor/Documents/GitHub/temp2/medical_image_captioning/server/indianamodelTrue.keras')
+model = load_model('/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/server/indianamodelTrue.keras')
 
 
 # Load necessary pre-processing objects (wordtoix, ixtoword, max_length)
-with open('/home/professor/Documents/GitHub/temp2/medical_image_captioning/server/ixtoword.json', 'r') as f:
+with open('/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/server/ixtoword.json', 'r') as f:
     ixtoword = json.load(f)
 
-with open('/home/professor/Documents/GitHub/temp2/medical_image_captioning/server/wordtoix.json', 'r') as f:
+with open('/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/server/wordtoix.json', 'r') as f:
     wordtoix = json.load(f)
 
 ixtoword = {int(k): v for k, v in ixtoword.items()}
