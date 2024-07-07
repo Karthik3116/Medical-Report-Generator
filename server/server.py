@@ -33,7 +33,7 @@ CORS(app)
 
 # Deep Learning
 
-loaded_model = tf.keras.models.load_model("/home/professor/accumodelpp84.h5")
+loaded_model = tf.keras.models.load_model("/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/server/accumodelpp84.h5")
 
 def preprocess_image(image_path):
     original_img = tf.keras.preprocessing.image.load_img(image_path)
