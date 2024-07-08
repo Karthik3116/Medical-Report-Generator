@@ -80,14 +80,14 @@ def predict():
 
 #LLM
 
-model = load_model('/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/server/indianamodelTrue.keras')
+model = load_model('/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/server/indianamodel.keras')
 
 
 # Load necessary pre-processing objects (wordtoix, ixtoword, max_length)
-with open('/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/server/ixtoword.json', 'r') as f:
+with open('/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/server/ixtoword1.json', 'r') as f:
     ixtoword = json.load(f)
 
-with open('/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/server/wordtoix.json', 'r') as f:
+with open('/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/server/wordtoix1.json', 'r') as f:
     wordtoix = json.load(f)
 
 ixtoword = {int(k): v for k, v in ixtoword.items()}
@@ -135,6 +135,9 @@ def predictllm():
         final = start.split()
         final = final[1:-1]
         final = ' '.join(final)
+        print('===========================================')
+        print(final)
+        print('===========================================')
 
         return jsonify({'caption': final})
     except Exception as e:
