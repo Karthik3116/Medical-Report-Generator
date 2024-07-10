@@ -39,6 +39,8 @@ const Otp = () => {
 
   return (
     <>
+    <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+    
       <section>
         <div className="form_data">
           <div className="form_heading">

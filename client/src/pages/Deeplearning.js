@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "./Dashboard.css";
@@ -8,7 +8,7 @@ const Deeplearning = () => {
     const [preview, setPreview] = useState(null);
     const [prediction, setPrediction] = useState(null);
     const [probabilities, setProbabilities] = useState(null);
-   
+    const [loading, setLoading] = useState(false);
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
@@ -18,6 +18,7 @@ const Deeplearning = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         const formData = new FormData();
         formData.append('file', file);
 
@@ -31,6 +32,8 @@ const Deeplearning = () => {
             setProbabilities(response.data.probabilities);
         } catch (error) {
             console.error(error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -50,35 +53,38 @@ const Deeplearning = () => {
     }, );
 
 
-
     return (
-        <div className="container">
-            <h1>Deep Learning</h1>
-            <form onSubmit={handleSubmit}>
-                <input type="file" onChange={handleFileChange} />
-                <button type="submit">Submit</button>
-            </form>
-            {preview && (
-                <div>
-                    <h3>Image Preview:</h3>
-                    <img src={preview} alt="Selected Preview" style={{ width: '200px', height: 'auto' }} />
-                </div>
-            )}
-            {prediction && (
-                <div>
-                    <div>Prediction: {prediction}</div>
-                    {probabilities && (
-                        <div>
-                            <h3>Probabilities:</h3>
-                            <ul>
-                                {probabilities.map((prob, index) => (
-                                    <li key={index}>{prob}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </div>
-            )}
+        <div className="llm-container">
+            <div className="llm-box">
+                <h1>Deep Learning</h1>
+                <form onSubmit={handleSubmit} className="upload-form">
+                    <input type="file" onChange={handleFileChange} accept=".jpg, .jpeg, .png" className="file-input" />
+                    <button type="submit" className="submit-button" disabled={!file || loading}>
+                        {loading ? 'Loading...' : 'Submit'}
+                    </button>
+                </form>
+                {preview && (
+                    <div className="image-preview">
+                        <h3>Image Preview:</h3>
+                        <img src={preview} alt="Selected Preview" className="preview-image" />
+                    </div>
+                )}
+                {prediction && (
+                    <div className="prediction-results">
+                        <h3>Prediction: {prediction}</h3>
+                        {probabilities && (
+                            <div>
+                                <h3>Probabilities:</h3>
+                                <ul className="probabilities-list">
+                                    {probabilities.map((prob, index) => (
+                                        <li key={index}>{prob}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
