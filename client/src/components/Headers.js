@@ -12,6 +12,7 @@ const Headers = () => {
           <NavLink to="/" className="navbar-brand custom-title">Medical Image Captioning</NavLink>
           <Nav className="ml-auto">
             <NavLink to="/register" className="nav-link custom-link">Register</NavLink>
+            <NavLink to="/test" className="nav-link custom-link">|  Testing</NavLink>
           </Nav>
         </Container>
       </Navbar>
