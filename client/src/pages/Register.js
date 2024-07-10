@@ -42,11 +42,12 @@ const Register = () => {
       toast.error("password length minimum 6 character")
     }else {
       const response = await registerfunction(inputdata);
-      toast.success("User Registered")
+      
 
       if(response.status === 200){
         setInputdata({...inputdata,fname:"",email:"",password:"",number:""});
         navigate("/")
+        toast.success("User Registered")
       }else{
         toast.error(response.response.data.error);
       }

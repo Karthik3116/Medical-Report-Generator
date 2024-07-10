@@ -30,7 +30,7 @@ const Otp = () => {
         toast.success(response.data.message);
         setTimeout(() => {
           navigate("/dashboard")
-        }, 5000)
+        }, 2000)
       } else {
         toast.error(response.response.data.error)
       }
