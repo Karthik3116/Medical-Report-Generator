@@ -9,7 +9,7 @@ else:
     print("GPU is not available.")
 
 # Set the size of the matrices
-MATRIX_SIZE = 10000
+MATRIX_SIZE = 100000
 
 SEED = 42
 
