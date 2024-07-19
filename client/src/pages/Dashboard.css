@@ -188,3 +188,8 @@ h1 {
     margin-bottom: 5px;
     font-size: 1rem;
 }
+
+
+.prediction-text {
+    color: red;
+}

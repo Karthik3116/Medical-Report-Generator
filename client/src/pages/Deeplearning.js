@@ -71,8 +71,9 @@ const Deeplearning = () => {
                 )}
                 {prediction && (
                     <div className="prediction-results">
-                        <h3>Prediction: {prediction}</h3>
-                        {probabilities && (
+                        <h3>Prediction:</h3>
+                        <h3 className='prediction-text'>{prediction}</h3>
+                        {/* {probabilities && (
                             <div>
                                 <h3>Probabilities:</h3>
                                 <ul className="probabilities-list">
@@ -81,7 +82,7 @@ const Deeplearning = () => {
                                     ))}
                                 </ul>
                             </div>
-                        )}
+                        )} */}
                     </div>
                 )}
             </div>
