@@ -33,7 +33,7 @@ CORS(app)
 
 # Deep Learning
 
-loaded_model = tf.keras.models.load_model("/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/server/accumodelpp84.h5")
+loaded_model = tf.keras.models.load_model("/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/backend/accumodelpp84.h5")
 
 def preprocess_image(image_path):
     original_img = tf.keras.preprocessing.image.load_img(image_path)
@@ -80,14 +80,14 @@ def predict():
 
 #LLM
 
-model = load_model('/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/server/indianamodel.keras')
+model = load_model('/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/backend/indianamodel.keras')
 
 
 # Load necessary pre-processing objects (wordtoix, ixtoword, max_length)
-with open('/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/server/ixtoword1.json', 'r') as f:
+with open('/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/backend/ixtoword1.json', 'r') as f:
     ixtoword = json.load(f)
 
-with open('/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/server/wordtoix1.json', 'r') as f:
+with open('/home/professor/Documents/GitHub/temp2/medical_image_captioning/Medical-Report-Generator/backend/wordtoix1.json', 'r') as f:
     wordtoix = json.load(f)
 
 ixtoword = {int(k): v for k, v in ixtoword.items()}
