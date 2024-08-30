@@ -1,0 +1,168 @@
+@import "colors";
+
+.home {
+  width: 100%;
+  height: 100vh;
+  background-color: $grey;
+  margin-top: 0;
+  position: relative;
+
+  > main {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    justify-content: center;
+    h1 {
+      font: 700 6rem ;
+      color: $yellow;
+      text-shadow: 1px 1px 6px black;
+    }
+    p {
+      font: 500 1.2rem $text1;
+      color: $white;
+      text-shadow: 5px 1px 10px black;
+    }
+    #guestredirect {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      background-color: $yellow;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-out;
+
+      &:hover {
+        background-color: #d9822b;
+      }
+    }
+  }
+
+  //for background image
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border: 0;
+    position: absolute;
+    background: no-repeat center/cover url('../assets/chestx-ray-background-image.png');
+    filter: blur(5px);
+  }
+}
+
+.home2 {
+  width: 100%;
+  height: 100vh;
+  background-color: $grey;
+  padding: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > img {
+    width: 30%;
+    // padding: rem;
+    animation: spinAndMove 5000ms linear infinite;
+  }
+  > div {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    height: 100vh;
+    h1 {
+      font: 700 2rem $text1;
+      color: $black;
+    }
+    p {
+      color: $blue;
+      letter-spacing: 2px;
+      word-spacing: 5px;
+      font: 100 1.2rem $text2;
+    }
+  }
+}
+
+@keyframes spinAndMove {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(90deg);
+  }
+  50% {
+    transform: translateY(0) rotate(180deg);
+  }
+  75% {
+    transform: translateY(20px) rotate(270deg);
+  }
+  100% {
+    transform: translateY(0) rotate(360deg);
+  }
+}
+
+@keyframes imgUp {
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .home {
+    > main h1 {
+      font: 700 3rem $text1;
+      color: $yellow;
+      text-shadow: 1px 1px 6px black;
+    }
+    p {
+      font: 500 1rem $text1;
+      color: $white;
+      text-shadow: 5px 1px 10px black;
+    }
+  }
+  .home2 {
+    > img {
+      display: none;
+    }
+    > div {
+      width: 100%;
+      h1 {
+        font: 900 1.6rem $text1;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .home {
+    > main h1 {
+      font: 700 2.5rem $text1;
+      color: $yellow;
+      text-shadow: 1px 1px 6px black;
+    }
+    p {
+      text-align: center;
+      font: 500 0.7rem $text1;
+      color: $white;
+      text-shadow: 5px 1px 10px black;
+    }
+  }
+  .home2 {
+    height: auto;
+    > img {
+      display: none;
+    }
+    > div {
+      width: 100%;
+    }
+  }
+}

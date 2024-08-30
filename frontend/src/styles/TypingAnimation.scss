@@ -1,0 +1,29 @@
+.typing-animation h1 {
+    // margin-top: ;
+    padding-top: 100px;
+    overflow: hidden; /* Hide overflow text */
+    border-right: 2px solid #333; /* Add cursor effect */
+    white-space: nowrap; /* Don't wrap text */
+    margin: 0;
+    padding: 0;
+    animation: typing 1s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  @keyframes blink-caret {
+    from, to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: #333;
+    }
+  }
+  

@@ -1,0 +1,113 @@
+.loginpage{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.form_container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333333;
+    }
+  
+    form {
+      display: flex;
+      flex-direction: column;
+  
+      div {
+        margin-bottom: 15px;
+  
+        label {
+          font-weight: bold;
+          margin-bottom: 5px;
+          color: #555555;
+          display: block;
+        }
+  
+        input[type="email"],
+        input[type="password"] {
+          width: 100%;
+          padding: 10px;
+          font-size: 16px;
+          border: 1px solid #cccccc;
+          border-radius: 5px;
+          transition: border-color 0.3s ease;
+  
+          &:focus {
+            border-color: #007bff;
+            outline: none;
+          }
+        }
+      }
+  
+      button[type="submit"] {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+  
+      span {
+        font-size: 20px;
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 1px solid #cccccc;
+        text-align: center;
+        color: #555555;
+  
+        a {
+          font-weight: bold;
+          color: #007bff;
+          text-decoration: none;
+          transition: color 0.3s ease;
+  
+          &:hover {
+            color: #0056b3;
+          }
+        }
+      }
+    }
+  }
+  
+  .Toastify__toast-container {
+    z-index: 9999; // Ensure the toast appears above other content
+    top: 60px;
+    right: 20px;
+  }
+  
+  .Toastify__toast {
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .Toastify__toast--info {
+    background-color: #17a2b8;
+  }
+  
+  .Toastify__toast--success {
+    background-color: #28a745;
+  }
+  
+  .Toastify__toast--error {
+    background-color: #dc3545;
+  }
+  
+  .Toastify__toast-body {
+    padding: 15px 20px;
+  }
+  

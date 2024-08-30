@@ -1,0 +1,107 @@
+// .fileupload {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   height: auto;
+//   min-height :100vh;
+//   padding-top:8rem;
+
+//   .card {
+//     width: auto;
+//     height:auto;
+//     padding: 20px;
+//     border: 1px solid #ccc;
+//     border-radius: 5px;
+
+//     form {
+//       display: flex;
+//       flex-direction: column;
+
+//       .form-floating {
+//         margin-bottom: 15px;
+
+//         &:last-child {
+//           margin-bottom: 20px;
+//         }
+
+//         label {
+//           font-size: 14px;
+//         }
+
+//         input {
+//           padding: 8px;
+//           width: 100%;
+//           border: 1px solid #ccc;
+//           border-radius: 5px;
+//         }
+
+//         select {
+//           padding: 8px;
+//           width: 100%;
+//           border: 1px solid #ccc;
+//           border-radius: 5px;
+//         }
+//       }
+
+//       .upload {
+//         cursor: pointer;
+//         color: white;
+//         background-color: #007bff;
+//         border: none;
+//         padding: 10px;
+//         border-radius: 5px;
+//         text-align: center;
+//         width: 100%;
+//         margin-bottom: 10px;
+//         transition: background-color 0.3s;
+
+//         &:hover {
+//           background-color: #0056b3;
+//         }
+//       }
+
+//       .selected-file-box {
+//         margin-bottom: 10px;
+
+//         span {
+//           font-size: 14px;
+//           font-weight: bold;
+//         }
+//       }
+
+//       button[type="submit"] {
+//         background-color: #28a745;
+//         color: white;
+//         border: none;
+//         padding: 10px;
+//         border-radius: 5px;
+//         cursor: pointer;
+//         width: 100%;
+//         transition: background-color 0.3s;
+
+//         &:hover {
+//           background-color: #218838;
+//         }
+//       }
+//     }
+//   }
+// }
+// .response-section {
+//   margin-top: 20px;
+//   padding: 20px;
+//   border-radius: 5px;
+//   min-width: 80%;
+//   h2 {
+//     font-size: 20px;
+//     margin-bottom: 10px;
+//   }
+
+//   .prediction-class {
+//     color: #28a745;
+//   }
+  
+//   .confidence {
+//     color: #007bff;
+//   }
+// }

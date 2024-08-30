@@ -1,0 +1,60 @@
+.home_page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    
+    h4 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      span {
+        font-weight: bold;
+        color: #007bff;
+      }
+    }
+  
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #dc3545;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #c82333;
+      }
+    }
+  }
+  
+  .Toastify__toast-container {
+    z-index: 9999; // Ensure the toast appears above other content
+    top: 60px;
+    right: 20px;
+  }
+  
+  .Toastify__toast {
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .Toastify__toast--info {
+    background-color: #17a2b8;
+  }
+  
+  .Toastify__toast--success {
+    background-color: #28a745;
+  }
+  
+  .Toastify__toast--error {
+    background-color: #dc3545;
+  }
+  
+  .Toastify__toast-body {
+    padding: 15px 20px;
+  }
+  

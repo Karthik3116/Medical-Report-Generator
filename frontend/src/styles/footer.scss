@@ -1,0 +1,63 @@
+@import "colors";
+
+.myfooter {
+  background-color: $black;
+  min-height: 30vh;
+  width: 100%;
+  color: $white;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding: 2rem;
+
+  #footerbrand {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    > h1 {
+      font: 700 2rem $text1;
+      text-transform: uppercase;
+      color: $white;
+    }
+    > p {
+      color: $grey;
+      font: 200 1rem $text1;
+    }
+  }
+  #contactfooter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h5 {
+      font: 500 2rem $text1;
+    }
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      a {
+        text-decoration: none;
+        color: $yellow;
+        font: 400 1rem $text1;
+        &:hover {
+          color: $grey;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 550px) {
+  .myfooter {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    #footerbrand{
+      align-items: center;
+      padding-bottom: 1rem;
+    }
+  }
+}
