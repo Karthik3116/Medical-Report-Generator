@@ -116,30 +116,44 @@ def encode(image):
     vec = np.reshape(vec, (vec.shape[1])) 
     return vec 
 
-@app.route('/predictllm', methods=['POST',"GET"])
+@app.route('/predictllm', methods=['POST', 'GET'])
 def predictllm():
     try:
-        file = request.files['file']
-        img = Image.open(file)
-        pic = encode(img).reshape(1,2048)
-        start = 'startseq'
-        for i in range(max_length):
-            seq = [wordtoix[word] for word in start.split() if word in wordtoix]
-            seq = pad_sequences([seq], maxlen=max_length)
-            yhat = model.predict([pic, seq])
-            yhat = np.argmax(yhat, axis=-1)
-            word = ixtoword[yhat[0]]
-            start += ' ' + word
-            if word == 'endseq':
-                break
-        final = start.split()
-        final = final[1:-1]
-        final = ' '.join(final)
-        print('===========================================')
-        print(final)
-        print('===========================================')
 
-        return jsonify({'caption': final})
+        if 'file' not in request.files:
+            return jsonify({'error': 'No file part'})
+        
+        file = request.files['file']
+      
+        if file.filename == '':
+            return jsonify({'error': 'No selected file'})
+        if file:
+            
+            temp_path = "/tmp/uploaded_image.png"
+            file.save(temp_path)
+            
+            img = Image.open(temp_path)
+            pic = encode(img).reshape(1, 2048)
+            start = 'startseq'
+            for i in range(max_length):
+                seq = [wordtoix[word] for word in start.split() if word in wordtoix]
+                seq = pad_sequences([seq], maxlen=max_length)
+                yhat = model.predict([pic, seq])
+                yhat = np.argmax(yhat, axis=-1)
+                word = ixtoword[yhat[0]]
+                start += ' ' + word
+                if word == 'endseq':
+                    break
+            final_caption = ' '.join(start.split()[1:-1])
+            
+            
+            prediction, probabilities = predict_image(temp_path, loaded_model)
+            
+            return jsonify({
+                'caption': final_caption,
+                'prediction': prediction,
+                'probabilities': probabilities.tolist()
+            })
     except Exception as e:
         return jsonify({'error': str(e)})
 
