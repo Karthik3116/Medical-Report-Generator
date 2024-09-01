@@ -22,7 +22,7 @@ const Header = ({ logout }) => {
       </div>
       <ul className="links">
         <li>
-          <Link to={"/mri"}>Scan Chest X-ray</Link>
+          <Link to={"/login"}>Scan Chest X-ray</Link>
         </li>
         {/* <li>
           <Link to={"/xray"}>scan X-Ray</Link>
@@ -51,7 +51,7 @@ const Header = ({ logout }) => {
       </div>
       <div className={`dropdown_menu ${toggle}`}>
         <li>
-          <Link onClick={handleLinkclick} to={"/user"}>
+          <Link onClick={handleLinkclick} to={"/login"}>
             scan X-Ray
           </Link>
         </li>
@@ -66,7 +66,7 @@ const Header = ({ logout }) => {
           </Link>
         </li>
         <li>
-          {cookies.token && location.pathname === "/user" ? (
+          {cookies.token && (location.pathname === "/user" || location.pathname === "/report") ? (
             <button className="action_btn" onClick={logout}>
               Logout
             </button>

@@ -5,10 +5,12 @@ import "../styles/report.scss"; // Import the SCSS file
 import Header from "../components/Header";
 import { useCookies } from "react-cookie";
 
-const Report = () => {
-  const location = useLocation();
-  const { patientDetails, image, generatedText } = location.state || {};
+const Reportrecent = () => {
+    const location = useLocation();
+    const { patient } = location.state || {};
+    console.log(patient);
   const [cookies, removeCookie] = useCookies([]);
+  const imageurl = patient.cloudinaryurl;
 
   async function handleOnClick() {
     const element = document.getElementById("report");
@@ -22,43 +24,45 @@ const Report = () => {
   };
 
   return (
+    
     <>
       <Header logout={handleLogout} />
       <div id="report" className="report-container">
         <h2>Report</h2>
-        {patientDetails ? (
+        {patient ? (
           <div className="patient-details">
             <p id="details">
               Name :{" "}
               <span>
-                <p>{patientDetails.patientName}</p>
+                <p>{patient.patientName}</p>
               </span>
             </p>
             <p id="details">
               Age :{" "}
               <span>
-                <p>{patientDetails.patientAge}</p>
+                <p>{patient.patientAge}</p>
               </span>
             </p>
             <p id="details">
               Sex :{" "}
               <span>
-                <p>{patientDetails.patientSex}</p>
+                <p>{patient.patientSex}</p>
               </span>{" "}
             </p>
           </div>
         ) : (
           <p>No patient details available.</p>
         )}
-        {image && (
+        {imageurl && (
           <div className="image-container">
             <h6>X-Ray</h6>
-            <img src={URL.createObjectURL(image)} alt="Patient" />
+            <img src={imageurl} alt="Patient x-ray image" />
           </div>
         )}
         <div className="generated-text">
           <h4>Generated caption by InsightXray</h4>
-          <p>{generatedText}</p>
+          <p>{patient.flaskResponse.caption}</p>
+          <h6>{patient.flaskResponse.prediction}</h6>
         </div>
 
         <div className="actions" data-html2canvas-ignore>
@@ -71,4 +75,4 @@ const Report = () => {
   );
 };
 
-export default Report;
+export default Reportrecent;

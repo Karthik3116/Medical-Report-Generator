@@ -40,6 +40,9 @@ const User = () => {
     removeCookie("token");
     navigate("/signup");
   };
+  const handleClick = () => {
+    navigate('/allreports',{ state: { username:username } });
+  };
   return (
     <>
       <Header logout={handleLogout} />
@@ -48,11 +51,16 @@ const User = () => {
           Welcome back <span>{username.toUpperCase()}</span>
         </h4>
         <div className="layout">
-          <div className="recent-tab">
-            <RecentsTab />
+          <div className="leftlayou">
+            <div className="recent-tab">
+              <RecentsTab username={username} />
+            </div>
+            <div className="allreports" onClick={handleClick} >
+              <h5>All reports</h5>
+            </div>
           </div>
           <div className="file-upload">
-            <FileUpload />
+            <FileUpload username={username} />
           </div>
         </div>
       </div>

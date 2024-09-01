@@ -4,14 +4,14 @@ import Signup from "./pages/Signup";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import User from "./pages/User";
-import Guest from "./pages/Guest";
 import Footer from "./components/Footer";
 // import Test from "./components/Test";
 // import FileUpload from "./components/FileUpload";
-import ScanMri from "./pages/ScanMri";
 import Report from "./pages/Report"
 import Feedback from "./pages/Feedback";
 import Notfound from "./components/Notfound";
+import Reportrecent from "./pages/Reportrecent";
+import Allreports from "./pages/Allreports";
 
 function App() {
   return (
@@ -22,10 +22,10 @@ function App() {
         <Route path="/user" element={<User />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/guest" element={ <Guest /> } />
-        <Route path="/mri" element={ <ScanMri /> } />
         <Route path="/feedback" element={ <Feedback /> } />   
         <Route path="/report" element={ <Report /> } /> 
+        <Route path="/reportrecent" element={ <Reportrecent /> } />
+        <Route path="/allreports" element={ <Allreports /> } /> 
         <Route path= "*" element={ <Notfound /> } />   
       </Routes>
       <Footer />

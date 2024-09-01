@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/fileupload.scss"
 
 
-const FileUpload = () => {
+const FileUpload = ({username}) => {
   const navigate = useNavigate(); 
 
   const [image, setImage] = useState(null);
@@ -36,6 +36,7 @@ const FileUpload = () => {
     formData.append("patientName", patientName);
     formData.append("patientAge", patientAge);
     formData.append("patientSex", patientSex);
+    formData.append("username",username);
 
     console.log(formData);
     // navigate("/report", { state: { patientDetails, image } })

@@ -1,16 +1,12 @@
-
-
-
 const FormData = require("form-data");
 const axios = require("axios");
 const fs = require("fs");
+const cloudinary = require("cloudinary").v2;
 const router = require("express").Router();
 const multer = require("multer");
-const path = require("path");
-const cloudinary = require("cloudinary").v2;
 const imageModel = require("../models/ImageModel");
+const path = require("path");
 
-// Configure Cloudinary
 cloudinary.config({
   cloud_name: "doth0iam3",
   api_key: "729281242664365",
@@ -32,35 +28,95 @@ const upload = multer({ storage: storage });
 
 router.post("/uploadimage", upload.single("image"), async (req, res) => {
   try {
-    console.log("Image POST request received");
+    console.log("image post request recived");
     console.log(req.body);
 
+    const { username, patientSex, patientAge, patientName } = req.body;
+
     const imagePath = path.join("./public/uploads", req.file.filename);
-
-    // Upload the image to Cloudinary
+    //cloudinary
     const cloudinaryResponse = await cloudinary.uploader.upload(imagePath, {
-      folder: "Medicalimages", // Optional: specify a folder in Cloudinary
+      folder: "Medicalimages",
     });
+    const cloudinaryurl = cloudinaryResponse.secure_url;
 
-    // Send image data to Flask API
     const imageFile = fs.createReadStream(imagePath);
     const formData = new FormData();
     formData.append("file", imageFile);
 
-    const flaskResponse = await axios.post("http://localhost:5000/predictllm", formData, {
-      headers: {
-        ...formData.getHeaders(),
-      },
-    });
+    // Send image data to Flask API
+    const flaskResponse = await axios.post(
+      "http://localhost:5000/predictllm",
+      formData,
+      {
+        headers: {
+          ...formData.getHeaders(),
+        },
+      }
+    );
 
-    // Return the response with the Cloudinary URL and Flask response
+    try {
+      const newImage = new imageModel({
+        username,
+        patientSex,
+        patientAge,
+        patientName,
+        flaskResponse: flaskResponse.data,
+        cloudinaryurl,
+      });
+
+      // Save the new image document to the database
+      await newImage.save();
+    } catch (dbError) {
+      console.error("Error saving to database:", dbError);
+      res.status(500).json({ error: "Error saving to database" });
+    }
+
     res.status(201).json({
-      cloudinaryUrl: cloudinaryResponse.secure_url,
       flaskResponse: flaskResponse.data,
+      cloudinaryUrl: cloudinaryurl,
     });
   } catch (error) {
     console.error("Error processing image:", error);
     res.status(500).json({ error: "Error processing image" });
+  }
+});
+
+router.get("/getrecent", async (req, res) => {
+  try {
+    const { username } = req.query;
+    console.log("username is ", username);
+    if (!username) {
+      return res.status(400).json({ error: "Username is required" });
+    }
+
+    // Retrieve the last 5 recent documents for the specified username
+    const recentImages = await imageModel
+      .find({ username })
+      .sort({ createdAt: -1 }) // Sort by `createdAt` in descending order
+      .limit(5);
+    res.status(200).json({ recentImages });
+  } catch (error) {
+    console.error("Error retrieving recent images:", error);
+    res.status(500).json({ error: "Error retrieving recent images" });
+  }
+});
+
+router.get("/getall", async (req, res) => {
+  try {
+    const { username } = req.query;
+    console.log("username is ", username);
+    if (!username) {
+      return res.status(400).json({ error: "Username is required" });
+    }
+
+    // Retrieve the last 5 recent documents for the specified username
+    const allImages = await imageModel
+      .find({ username });
+    res.status(200).json({ allImages });
+  } catch (error) {
+    console.error("Error retrieving all images:", error);
+    res.status(500).json({ error: "Error retrieving all images" });
   }
 });
 

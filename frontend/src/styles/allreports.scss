@@ -1,0 +1,85 @@
+/* PatientsTable.scss */
+.allreportspage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  &::before {
+    content: "";
+    width: 100%;
+    z-index: -10;
+    height: 100%;
+    border: 0;
+    position: absolute;
+    background: no-repeat center/cover
+      url("../assets/chestx-ray-background-image.png");
+    filter: blur(5px);
+  }
+  #title{
+    font-weight: bold;
+    text-shadow: #333;
+    color: #f4f4f4;
+  }
+
+  .patients-table-container {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+
+    h5 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+  }
+
+  .patients-table {
+    border-radius: 10px;
+    width: 90%;
+    border-collapse: collapse;
+
+    thead {
+      background-color: #f4f4f4;
+      th {
+        padding: 10px;
+        text-align: left;
+        color: #555;
+        font-weight: bold;
+      }
+    }
+
+    tbody {
+      tr {
+        background-color: rgba(255, 255, 255, 0.75);
+//   backdrop-filter: blur(10px);
+        &:hover {
+          background-color: #f9f9f9;
+          cursor: pointer;
+        }
+      }
+
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+      }
+    }
+  }
+
+  .view-button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}

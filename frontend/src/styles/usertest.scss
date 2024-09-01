@@ -1,92 +1,126 @@
 // styles/user.scss
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif; // Modern, clean font
-    background-color: #1a1a1d;
-    min-height: 100vh;
-    background-image: url('../assets/chestx-ray-background-image.png'); // Replace with your background image
-    background-size: cover;
-    background-position: center;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif; // Modern, clean font
+  background-color: #1a1a1d;
+  min-height: 100vh;
+  background-image: url("../assets/chestx-ray-background-image.png"); // Replace with your background image
+  background-size: cover;
+  background-position: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+}
+
+.home_page {
+  width: 100%;
+  max-width: 2000px;
+  // margin: 40px auto;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home_page h4 {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 35px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 20px;
+
+  span {
+    color: #ff6b6b; // Softer accent color
   }
-  
-  .home_page {
-    width:100%; 
-    max-width: 2000px;
-    // margin: 40px auto;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .home_page h4 {
-    margin-top: 50px;
-    text-align: center;
-    font-size: 35px;
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 20px;
-  
-    span {
-      color: #ff6b6b; // Softer accent color
+}
+
+.layout {
+  display: flex;
+  width: 100%;
+  justify-content: center; // Align items across the full width
+  gap: 100px; // Adds space between elements
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.recent-tab {
+  width: 20%;
+  min-width: 250px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  // font-size: px;
+  > div {
+    > ul {
+      > li {
+        &:hover {
+          transform: scale(1.05);
+          color: #ff6b6b;
+          cursor: pointer;
+        }
+      }
     }
   }
-  
-  .layout {
-    display: flex;
-    width: 100%;
-    justify-content: center; // Align items across the full width
-    gap: 100px; // Adds space between elements
-    align-items: flex-start;
-    margin-top: 20px;
-  }
-  
-  .recent-tab {
-    width: 20%; 
-    min-width: 250px;
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    color: #ffffff;
-    // font-size: px;
-  }
-  
-  .file-upload {
-    padding-top: 0;
-    flex-grow: 1; // Takes up the remaining space
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    max-width: 800px;
-    color: #ffffff;
-  }
-  
-  .ToastContainer {
-    font-size: 14px;
-    z-index: 9999;
-    top: 20px;
-    right: 20px;
-    position: fixed;
-  }
-  
+}
 
+.file-upload {
+  padding-top: 0;
+  flex-grow: 1; // Takes up the remaining space
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  color: #ffffff;
+}
+.allreports {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  cursor: pointer;
+  width: 20%;
+  min-width: 250px;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  &:hover {
+    // background-color: #e0e0e0;
+    transform: scale(1.05); /* Slightly enlarge the div on hover */
+    h5{
+      color: #ff6b6b;
+    }
+  }
+  h5 {
+    font-weight: bold;
+  }
+}
 
+.ToastContainer {
+  font-size: 14px;
+  z-index: 9999;
+  top: 20px;
+  right: 20px;
+  position: fixed;
+}
 
 // // styles/user.scss
 
@@ -103,7 +137,7 @@ body {
 //     background-size: cover;
 //     background-position: center;
 //   }
-  
+
 //   .home_page {
 //     width: 100%; // Full width of the screen
 //     max-width: 2000px;
@@ -118,7 +152,7 @@ body {
 //     flex-direction: column;
 //     align-items: center;
 //   }
-  
+
 //   .home_page h4 {
 //     margin-top: 100px;
 //     text-align: center;
@@ -126,12 +160,12 @@ body {
 //     font-weight: bold;
 //     color: #ffffff;
 //     margin-bottom: 20px;
-  
+
 //     span {
 //       color: #ff0000;
 //     }
 //   }
-  
+
 //   .layout {
 //     display: flex;
 //     width: 100%;
@@ -139,10 +173,10 @@ body {
 //     gap: 20px; // Adds space between the elements
 //     align-items: flex-start; // Aligns elements to the top
 //   }
-  
+
 //   .recent-tab {
 //     margin-left: 20px;
-//     width: 20%; 
+//     width: 20%;
 //     min-width: 200px;
 //     background-color: rgba(255, 255, 255, 0.3);
 //     backdrop-filter: blur(15px);
@@ -152,7 +186,7 @@ body {
 //     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 //     height: fit-content; // Adjusts height based on content
 //   }
-  
+
 //   .file-upload {
 //     width: 100%;
 //     flex-grow: 1; // Takes up the remaining space
@@ -164,4 +198,3 @@ body {
 //     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 //     max-width: 800px; // Controls max width for larger screens
 //   }
-  
