@@ -12,7 +12,7 @@ import Feedback from "./pages/Feedback";
 import Notfound from "./components/Notfound";
 import Reportrecent from "./pages/Reportrecent";
 import Allreports from "./pages/Allreports";
-import Allreports from "./components/WebhookVerification.js";
+import WebhookVerification  from "./components/WebhookVerification.js";
 
 
 function App() {

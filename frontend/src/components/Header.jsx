@@ -1,20 +1,22 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom"; // Import useLocation
-import hamburger from "../assets/hamburgericon.png";
-import { useCookies } from "react-cookie";
-import "../styles/Header.scss";
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+import hamburger from '../assets/hamburgericon.png';
+import '../styles/Header.scss';
 
-const Header = ({ logout }) => {
-  const [toggle, setToggle] = useState("");
-  const [cookies, ,] = useCookies([]);
-  const location = useLocation(); // Get current location
+const Header = () => {
+  const [toggle, setToggle] = useState('');
+  const [cookies, , removeCookie] = useCookies(['token', 'username']);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const handleToggleClick = () => {
-    setToggle(toggle === "" ? "open" : "");
+  const handleLogout = () => {
+    removeCookie('token');
+    removeCookie('username');
+    localStorage.removeItem('currentReport');
+    navigate('/login');
   };
-  const handleLinkclick = () => {
-    setToggle("");
-  };
+
   return (
     <nav className="mynavbar">
       <div className="logo">

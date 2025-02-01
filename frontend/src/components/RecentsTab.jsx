@@ -1,38 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
-const RecentsTab = ({username}) => {
-  const [recentImages, setRecentImages] = useState([]);
-  const navigate = useNavigate(); // Initialize useNavigate
-console.log(username);
+const RecentsTab = ({ username }) => {
+  const [recentReports, setRecentReports] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    // Fetch recent images from the server
-    const fetchRecentImages = async () => {
+    const fetchRecentReports = async () => {
       try {
-        const encodedUsername = encodeURIComponent(username);
-        const response = await axios.get(`http://localhost:4000/image/getrecent?username=${encodedUsername}`);
-        setRecentImages(response.data.recentImages);
+        const response = await axios.get(
+          `http://localhost:4000/reports?username=${encodeURIComponent(username)}`
+        );
+        setRecentReports(response.data.reports);
       } catch (error) {
-        console.error("Error fetching recent images:", error);
+        console.error('Error fetching reports:', error);
       }
     };
 
-    fetchRecentImages();
+    if (username) fetchRecentReports();
   }, [username]);
 
-  const handlePatientClick = (patient) => {
-    // Navigate to /report with state
-    navigate('/reportrecent', { state: { patient } });
-  };
-
   return (
-    <div>
-      <h5>Recent Patients</h5>
-      <ul>
-        {recentImages.map((image) => (
-          <li key={image._id} onClick={() => handlePatientClick(image)}>
-            {image.patientName}
+    <div className="recents-tab">
+      <h5>Recent Reports</h5>
+      <ul className="reports-list">
+        {recentReports.map(report => (
+          <li 
+            key={report._id}
+            onClick={() => navigate(`/report/${report._id}`)}
+          >
+            <div className="report-item">
+              <span>{report.patientName}</span>
+              <span>{new Date(report.date).toLocaleDateString()}</span>
+            </div>
           </li>
         ))}
       </ul>
