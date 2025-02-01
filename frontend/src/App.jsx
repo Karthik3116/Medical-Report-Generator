@@ -12,6 +12,8 @@ import Feedback from "./pages/Feedback";
 import Notfound from "./components/Notfound";
 import Reportrecent from "./pages/Reportrecent";
 import Allreports from "./pages/Allreports";
+import Allreports from "./components/WebhookVerification.js";
+
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
         <Route path="/report" element={ <Report /> } /> 
         <Route path="/reportrecent" element={ <Reportrecent /> } />
         <Route path="/allreports" element={ <Allreports /> } /> 
+        <Route path="/webhook" element={ <WebhookVerification /> } /> {/* Add WebhookVerification Route */}
         <Route path= "*" element={ <Notfound /> } />   
       </Routes>
       <Footer />
